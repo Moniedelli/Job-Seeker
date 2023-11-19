@@ -1,12 +1,47 @@
 
 'use client';
 
+import axios from 'axios';
+import { useState } from 'react';
 import { Datepicker, Button, Checkbox, Label, TextInput, Select } from 'flowbite-react';
 
 function RegisterPage() {
+  const [formData, setFormData] = useState({
+    email: '',
+    username: '',
+    name: '',
+    address: '',
+    phoneNumber: '',
+    gender: 'Male',
+    dateOfBirth: '',
+    joiningDate: '',
+    password: '',
+    rememberMe: false,
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('/api/create', formData);
+      console.log(response.data); // Handle response as needed
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Handle error as needed
+    }
+  };
+
+  const handleChange = (e) => {
+    const { id, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
   return (
     <div className='p-10'> 
-      <form className="flex max-w-md flex-col gap-4">
+      <form className="flex max-w-md flex-col gap-4" onSubmit={handleSubmit}>
         <div>
           <div className="mb-2 block">
             <Label htmlFor="email1" value="Email" />
@@ -65,7 +100,7 @@ function RegisterPage() {
           <TextInput id="password" type="password" required />
         </div>
         <div className="flex items-center gap-2">
-          <Checkbox id="remember" />
+        <Checkbox id="remember" checked={formData.rememberMe} onChange={handleChange} />
           <Label htmlFor="remember">Remember me</Label>
         </div>
         <Button type="submit">Submit</Button>
