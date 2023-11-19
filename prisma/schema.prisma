@@ -1,0 +1,77 @@
+datasource db {
+  url      = env("DATABASE_URL")
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum JenisKelamin {
+  MALE
+  FEMALE
+  OTHER
+}
+
+model User {
+  id                        Int                       @id @default(autoincrement())
+  username                  String    
+  password                  String                    @db.VarChar(50)
+  email                     String                    @unique
+  nama_lengkap              String?                   @db.VarChar(50)
+  alamat                    String                    @db.VarChar(255)
+  no_telp                   String
+  jenis_kelamin             String  
+  tanggal_lahir             DateTime                  @db.Date
+  tanggal_gabung            DateTime  @default(now()) @db.Date
+  user_education_histories  User_education_history[]  @relation("UserEducation")
+  user_job_histories        User_job_history[]        @relation("UserJob")
+
+}
+
+model User_education_history {
+  id                        Int                       @id @default(autoincrement())
+  pendidikan_terakhir       String
+  tahun_mulai               DateTime
+  tahun_selesai             DateTime
+  nilai                     Float
+  organisasi                String
+  userId                    Int
+  user                      User                      @relation("UserEducation", fields: [userId], references: [id])
+}
+
+model User_job_history {
+  id                        Int                       @id @default(autoincrement())
+  pekerjaan_terdahulu       String
+  perusahaan_terdahulu      String
+  tahun_mulai               DateTime
+  tahun_selesai             DateTime
+  pengalaman_kerja          String
+  keahlian                  String
+  userId                    Int
+  user                      User                      @relation("UserJob", fields: [userId], references: [id])
+}
+
+model Admin {
+  id_admin                  Int                       @id @default(autoincrement())
+  username                  String
+  password                  String  
+  email                     String  
+}
+
+model Job_category {
+  id                        Int                       @id @default(autoincrement())
+  nama_category             String
+}
+
+//model Job {
+
+//}
+
+//model Company {
+
+//}
+
+//model Application {
+
+//}
