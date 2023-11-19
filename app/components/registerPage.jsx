@@ -1,29 +1,38 @@
-
-'use client';
-
+'use client'
 import axios from 'axios';
 import { useState } from 'react';
 import { Datepicker, Button, Checkbox, Label, TextInput, Select } from 'flowbite-react';
 
 function RegisterPage() {
-  const [formData, setFormData] = useState({
-    email: '',
-    username: '',
-    name: '',
-    address: '',
-    phoneNumber: '',
-    gender: 'Male',
-    dateOfBirth: '',
-    joiningDate: '',
-    password: '',
-    rememberMe: false,
-  });
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [gender, setGender] = useState('male');
+  const [dateOfBirth, setDateOfBirth] = useState(new Date());
+  const [joiningDate, setJoiningDate] = useState(new Date());
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const formData = {
+      email,
+      username,
+      name,
+      address,
+      phoneNumber,
+      gender,
+      dateOfBirth,
+      joiningDate,
+      password,
+      rememberMe,
+    };
+
     try {
-      const response = await axios.post('/api/create', formData);
+      const response = await axios.post('/api/user/create', formData);
       console.log(response.data); // Handle response as needed
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -31,77 +40,123 @@ function RegisterPage() {
     }
   };
 
-  const handleChange = (e) => {
-    const { id, value, type, checked } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [id]: type === 'checkbox' ? checked : value,
-    }));
-  };
-
   return (
-    <div className='p-10'> 
+    <div className='p-10'>
       <form className="flex max-w-md flex-col gap-4" onSubmit={handleSubmit}>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="email1" value="Email" />
+            <Label htmlFor="email" value="Email" />
           </div>
-          <TextInput id="email" type="email" placeholder="name@gmail.com" required />
+          <TextInput
+            id="email"
+            type="email"
+            placeholder="name@gmail.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="base" value="Username" />
+            <Label htmlFor="username" value="Username" />
           </div>
-          <TextInput id="username" type="username" sizing="md" />
+          <TextInput
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            sizing="md"
+          />
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="base" value="Full name" />
+            <Label htmlFor="name" value="Full name" />
           </div>
-          <TextInput id="name" type="text" sizing="md" />
+          <TextInput
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            sizing="md"
+          />
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="base" value="Address" />
+            <Label htmlFor="address" value="Address" />
           </div>
-          <TextInput id="address" type="text" sizing="md" />
+          <TextInput
+            id="address"
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            sizing="md"
+          />
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="base" value="Phone number" />
+            <Label htmlFor="phoneNumber" value="Phone number" />
           </div>
-          <TextInput id="base" type="text" sizing="md" />
+          <TextInput
+            id="phoneNumber"
+            type="text"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            sizing="md"
+          />
         </div>
         <div className="max-w-md">
           <div className="mb-2 block">
             <Label htmlFor="gender" value="Select gender" />
           </div>
-          <Select id="gender" required>
-            <option>Male</option>
-            <option>Female</option>
+          <Select
+            id="gender"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            required
+          >
+            <option value="male">Male</option>
+            <option value="female">Female</option>
           </Select>
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="base" value="Date of bird" />
-            <Datepicker />
+            <Label htmlFor="dateOfBirth" value="Date of birth" />
+            <Datepicker
+              id="dateOfBirth"
+              selected={dateOfBirth}
+              onChange={(date) => setDateOfBirth(date)}
+            />
           </div>
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="base" value="Joining date" />
-            <Datepicker />
+            <Label htmlFor="joiningDate" value="Joining date" />
+            <Datepicker
+              id="joiningDate"
+              selected={joiningDate}
+              onChange={(date) => setJoiningDate(date)}
+            />
           </div>
         </div>
         <div>
           <div className="mb-2 block">
             <Label htmlFor="password" value="Password" />
           </div>
-          <TextInput id="password" type="password" required />
+          <TextInput
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </div>
         <div className="flex items-center gap-2">
-        <Checkbox id="remember" checked={formData.rememberMe} onChange={handleChange} />
-          <Label htmlFor="remember">Remember me</Label>
+          <Checkbox
+            id="rememberMe"
+            checked={rememberMe}
+            onChange={() => setRememberMe(!rememberMe)}
+          />
+          <Label htmlFor="rememberMe">Remember me</Label>
         </div>
         <Button type="submit">Submit</Button>
       </form>
