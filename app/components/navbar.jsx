@@ -3,6 +3,9 @@
 import { Button, Navbar } from 'flowbite-react';
 import LoginModalComponent from './loginModal';
 
+
+
+
 function NavbarComponent
 () {
   return (
@@ -19,6 +22,17 @@ function NavbarComponent
         <Navbar.Link href="/admin">Admin</Navbar.Link>
         <Navbar.Link href="/contact">Contact</Navbar.Link>
       </Navbar.Collapse>
+
+  
+
+       
+
+      
+
+      
+
+       
+
       <LoginModalComponent />
     </Navbar>
   );
