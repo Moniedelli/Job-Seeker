@@ -32,23 +32,32 @@ function SidebarComponent() {
             </div>
           </Sidebar.Item>
           <Sidebar.Item>
-            <div className='font-semibold py-2'>Education</div>
+            <div className='font-semibold py-2'>Skill</div>
             <div className="flex items-center gap-2">
               <Checkbox id="promotion" />
-              <Label htmlFor="promotion">SMA</Label>
+              <Label htmlFor="promotion">Frontend Developer</Label>
             </div>
             <div className="flex items-center gap-2">
               <Checkbox id="age" />
-              <Label htmlFor="age">D3</Label>
+              <Label htmlFor="age">Backend Developer</Label>
             </div>
             <div className="flex items-center gap-2">
               <Checkbox id="promotion" />
-              <Label htmlFor="promotion">S1</Label>
+              <Label htmlFor="promotion">Android Developer</Label>
             </div>
             <div className="flex items-center gap-2">
               <Checkbox id="age" />
-              <Label htmlFor="age">S2</Label>
+              <Label htmlFor="age">IOS Developer</Label>
             </div>
+            <div className="flex items-center gap-2">
+              <Checkbox id="age" />
+              <Label htmlFor="age">UI/UX</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Checkbox id="age" />
+              <Label htmlFor="age">Lain-Lain</Label>
+            </div>
+
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiArrowSmRight}>
             Logout
