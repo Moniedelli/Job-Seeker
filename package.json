@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^5.6.0",
+    "@prisma/client": "^5.5.2",
     "axios": "^1.6.2",
     "flowbite-react": "^0.6.4",
     "next": "14.0.3",
@@ -21,7 +21,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
     "postcss": "^8",
-    "prisma": "^5.6.0",
+    "prisma": "^5.5.2",
     "tailwindcss": "^3.3.0"
   }
 }
