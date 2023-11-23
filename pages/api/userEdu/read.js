@@ -9,20 +9,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Retrieve job categories along with associated jobs
-    const jobCategories = await prisma.job_category.findMany({
-      // Include associated jobs
+    const educationHistory = await prisma.user_education_history.findMany({
       include: { job: true },
     });
 
-    // Send JSON response with job categories
-    res.json(jobCategories);
+    res.json(educationHistory);
   } catch (error) {
-    // Handle errors
-    console.error('Error retrieving job categories:', error);
+    console.error('Error retrieving education history:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   } finally {
-    // Disconnect Prisma client
     await prisma.$disconnect();
   }
 }

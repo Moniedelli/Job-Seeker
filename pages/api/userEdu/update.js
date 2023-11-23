@@ -8,20 +8,24 @@ export default async function handler(req, res) {
   }
 
   const { id } = req.query;
-  const { nama_category, jobId } = req.body;
+  const { pendidikan_terakhir, tahun_mulai, tahun_selesai, nilai, organisasi, userId } = req.body;
 
   try {
-    const updatedCategory = await prisma.job_category.update({
+    const updatedEducationHistory = await prisma.user_education_history.update({
       where: { id: parseInt(id, 10) },
       data: {
-        nama_category,
-        job: {
-          connect: { id: parseInt(jobId, 10) }
+        pendidikan_terakhir,
+        tahun_mulai,
+        tahun_selesai,
+        nilai,
+        organisasi,
+        user: {
+            connect: { id: userId }
         }
-      },
+    },
     });
 
-    res.json(updatedCategory);
+    res.json(updatedEducationHistory);
   } catch (error) {
     console.error('Error updating job category:', error);
     res.status(500).json({ error: 'Internal Server Error' });
