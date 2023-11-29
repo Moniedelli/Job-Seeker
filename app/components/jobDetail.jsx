@@ -1,12 +1,16 @@
 'use client'
 
-const JobDetail = ({job}) => {
+import { Button } from 'flowbite-react';
+
+const JobDetail = ({ job }) => {
   return (
-    <div>
-      {data.posisi_pekerjaan}
-      Adel
+    <div className='p-10'>
+      <h2 className='text-2xl font-bold'>{job.posisi_pekerjaan}</h2>
+      <Button outline gradientDuoTone="greenToBlue">
+        Apply
+      </Button>
     </div>
-  )
-}
+  );
+};
 
 export default JobDetail;

@@ -4,6 +4,7 @@
 import { Dropdown, Navbar, Avatar } from "flowbite-react";
 import LoginModalComponent from "./loginModal";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 function NavbarComponent() {
     const [info_login, set_info_login] = useState();
@@ -31,13 +32,14 @@ function NavbarComponent() {
                 />
             </Navbar.Brand>
             <Navbar.Collapse>
-                <Navbar.Link
-                    href="/"
-                    active></Navbar.Link>
-                <Navbar.Link href="/about">About</Navbar.Link>
-                <Navbar.Link href="/user">User</Navbar.Link>
-                <Navbar.Link href="/admin">Admin</Navbar.Link>
-                <Navbar.Link href="/contact">Contact</Navbar.Link>
+                <Link href="/">
+                  <Navbar.Link
+                      active></Navbar.Link>
+                </Link>
+                <Link href="/about"><Navbar.Link>About</Navbar.Link></Link>
+                <Link href="/user"><Navbar.Link>User</Navbar.Link></Link>
+                <Link href="/admin"><Navbar.Link>Admin</Navbar.Link></Link>
+                <Link href="/contact"><Navbar.Link>Contact</Navbar.Link></Link>
             </Navbar.Collapse>
 
             {info_login?.nama_lengkap ? (

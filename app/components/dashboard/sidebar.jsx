@@ -6,7 +6,7 @@ import { HiArrowSmRight, HiChartPie, HiShoppingBag, HiTable, HiUser } from 'reac
 
 function SidebarComponent() {
   return (
-    <Sidebar className='m-8 border-2 border-solid rounded-mdp-4' aria-label="Sidebar with multi-level dropdown example">
+    <Sidebar className='m-8 border-2 border-solid rounded-mdp-4' aria-label="Sidebar with multi-level dropdown example" style={{ borderRadius: '15px' }}>
       <Sidebar.Items>
         <Sidebar.ItemGroup>
           <Sidebar.Item href="#" icon={HiChartPie}>
@@ -58,9 +58,6 @@ function SidebarComponent() {
               <Label htmlFor="age">Lain-Lain</Label>
             </div>
 
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiArrowSmRight}>
-            Logout
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
