@@ -11,7 +11,7 @@ function BodyProfile() {
     <div className="flex gap-3">
       <div className='p-10 w-1/2 text-sm'>
         <div>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus laudantium repellendus perferendis, atque tempora dolore dolorum! Nulla accusantium ex eveniet dolorem a? Modi assumenda possimus nisi ipsa voluptatibus. Sit, cumque!
+        Dedicated and results-driven IT professional with over 8 years of experience in full-stack web development. Proven track record of delivering high-quality software solutions for diverse clients. Skilled in frontend and backend technologies, with a passion for clean and efficient code. Committed to staying current with emerging technologies and industry trends.
         </div>
         <EducationHistory />
         <JobHistory />

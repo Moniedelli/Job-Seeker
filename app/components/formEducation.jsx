@@ -72,10 +72,10 @@ function FormEducation() {
           </div>
           <TextInput
             id="grade"
-            type="text"
+            type="number"
             placeholder="Nilai"
             value={grade}
-            onChange={(e) => setGrade(e.target.value)}
+            onChange={(e) => setGrade(parseFloat(e.target.value))}
           />
         </div>
         <div>

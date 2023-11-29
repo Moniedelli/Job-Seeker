@@ -1,12 +1,13 @@
 'use client'
+import axios from 'axios'
 import NavbarComponent from '../navbar'
 import CardComponent from './card'
 import SidebarComponent from './sidebar'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 export default function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('');
-
+  const [data, setData] = useState([]);
 
   const handleSearchInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -17,8 +18,22 @@ export default function Dashboard() {
     
   };
 
+  useEffect(() => {
+    const getJob = async () => {
+      try {
+        const response = await axios('/api/job/read');
+        const jobs = await response.data;
+        setData(jobs);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    getJob();
+  }, []);
+
   return (
-   <div>
+    <div>
 
       <form>
         <div className="relative mt-2">
@@ -36,9 +51,9 @@ export default function Dashboard() {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                 />
               </svg>
@@ -66,7 +81,11 @@ export default function Dashboard() {
 
       <div className='flex'>
         <SidebarComponent />
-        <CardComponent />
+        <div className='flex flex-wrap justify-center pt-6'>
+          {data.map((item) => (
+            <CardComponent key={item.id} data={item} />
+          ))}
+        </div>
       </div>
     </div>
   )
