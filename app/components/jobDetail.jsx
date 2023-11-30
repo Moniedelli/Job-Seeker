@@ -14,7 +14,7 @@ const JobDetail = ({ job }) => {
     <p className="text-gray-600 mb-2">Job Type: {jenis_pekerjaan}</p>
     <p className="text-gray-600 mb-2">Posting Date: {tgl_posting}</p>
     <div className="mt-4">
-      <h3 className="text-xl font-semibold mb-2 text-blue-600">Job Description:</h3>
+      <h3 className="text-xl font-semibold mb-2 text-bl-600">Job Description:</h3>
       <p className="text-gray-700 leading-relaxed">{deskripsi}</p>
     </div>
       <Button outline gradientDuoTone="greenToBlue">
