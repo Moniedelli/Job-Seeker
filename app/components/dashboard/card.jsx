@@ -33,6 +33,8 @@ const CardComponent = ({ data }) => {
         </Link>
       </Card>
     </div>
+
+    
   );
 }
 
