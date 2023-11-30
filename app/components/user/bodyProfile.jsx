@@ -10,15 +10,16 @@ function BodyProfile() {
   return (
     <>
       <div className='p-5 text-sm'>
-        <div className='py-5'>
-        Dedicated and results-driven IT professional with over 8 years of experience in full-stack web development. Proven track record of delivering high-quality software solutions for diverse clients. Skilled in frontend and backend technologies, with a passion for clean and efficient code. Committed to staying current with emerging technologies and industry trends.
-        </div>
-        <div className='pr-5'>
+        <h2 className="font-semibold text-xl">Education Histories</h2>
+        <div className='flex justify-end pr-5'>
           <AddEducation />
         </div>
         <EducationHistory />
+        <h2 className="font-semibold text-xl pt-10">Job Histories</h2>
+        <div className='flex justify-end pr-5'>
           <AddJob />
-          <JobHistory />
+        </div>
+        <JobHistory />
       </div>
     </>
   );
