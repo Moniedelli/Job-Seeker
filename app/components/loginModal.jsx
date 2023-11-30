@@ -11,6 +11,7 @@ import {
 } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import axios from "axios";
+import RegisterModal from "./registerModal";
 
 function LoginModalComponent() {
     const [openModal, setOpenModal] = useState(false);
@@ -45,7 +46,7 @@ function LoginModalComponent() {
 
     return (
         <>
-            <Button onClick={() => setOpenModal(true)}>Sign in</Button>
+            <Button gradientDuoTone="greenToBlue" onClick={() => setOpenModal(true)}>Sign in</Button>
             <Modal
                 show={openModal}
                 size="md"
@@ -123,17 +124,13 @@ function LoginModalComponent() {
                             </a>
                         </div>
                         <div className="w-full">
-                            <Button type="submit">
+                            <Button gradientDuoTone="greenToBlue" type="submit">
                                 Log in to your account
                             </Button>
                         </div>
                         <div className="flex justify-between text-sm font-medium text-gray-500 dark:text-gray-300">
                             Not registered?&nbsp;
-                            <a
-                                href="/register"
-                                className="text-cyan-700 hover:underline dark:text-cyan-500">
-                                Create account
-                            </a>
+                            <RegisterModal />
                         </div>
                     </form>
                 </Modal.Body>
