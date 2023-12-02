@@ -8,10 +8,15 @@ const TotalJob = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      try {
       const response = await fetch('/api/job/getTotalJob');
       const data = await response.json();
       setTotalJobs(data.totalJobs);
-    };
+    } catch (error) {
+      console.error('Error fetching total jobs:', error);
+    }
+  };
+    
 
     fetchData();
   }, []);

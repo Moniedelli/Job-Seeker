@@ -11,14 +11,21 @@ import TotalJob from './totalJob'
 export default function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   const handleSearchInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const handleSearchButtonClick = () => {
+  const handleSearchButtonClick = async () => {
     console.log('Searching for:', searchTerm);
-    
+    try {
+      const response = await axios.get(`/api/job/search?term=${searchTerm}`);
+      const jobs = response.data;
+      setFilteredData(jobs);
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+    }
   };
 
   useEffect(() => {
@@ -27,6 +34,7 @@ export default function Dashboard() {
         const response = await axios('/api/job/read');
         const jobs = await response.data;
         setData(jobs);
+        setFilteredData(jobs);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -38,7 +46,7 @@ export default function Dashboard() {
   return (
     <div>
       <CarouselComponent />
-      <form>
+      <form onSubmit={(e) => { e.preventDefault(); handleSearchButtonClick(); }}>
         <div className="relative mt-5 flex justify-end mr-5">
           <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
             Search
@@ -90,9 +98,13 @@ export default function Dashboard() {
         <SidebarComponent />
         
         <div className='flex flex-wrap justify-center bg-gray-50 rounded-lg mt-16 py-5 mr-5'>
-          {data.map((item) => (
-            <CardComponent key={item.id} data={item} />
-          ))}
+        {filteredData.length > 0 ? (
+            filteredData.map((item) => (
+              <CardComponent key={item.id} data={item} />
+            ))
+          ) : (
+            <p>No jobs found.</p>
+          )}
         </div>
       </div>
     </div>
