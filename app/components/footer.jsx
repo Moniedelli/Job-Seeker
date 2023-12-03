@@ -21,7 +21,7 @@ function FooterComponent() {
           </Footer.LinkGroup>
         </div>
         <Footer.Divider />
-        <Footer.Copyright href="#" by="Flowbite™" year={2022} />
+        <Footer.Copyright href="#" by="Dealink™" year={2023} />
       </div>
     </Footer>
   );

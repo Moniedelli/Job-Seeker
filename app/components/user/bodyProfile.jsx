@@ -1,29 +1,27 @@
 
 'use client';
 
-import ButtonEducation from '../buttonEducation';
-import ButtonJob from '../buttonJob';
 import EducationHistory from '../educationHistories';
+import AddEducation from '../formEducation';
+import AddJob from '../formJob';
 import JobHistory from '../jobHistories';
 
 function BodyProfile() {
   return (
-    <div className="flex gap-3">
-      <div className='p-10 w-1/2 text-sm'>
-        <div>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus laudantium repellendus perferendis, atque tempora dolore dolorum! Nulla accusantium ex eveniet dolorem a? Modi assumenda possimus nisi ipsa voluptatibus. Sit, cumque!
+    <>
+      <div className='p-5 text-sm'>
+        <h2 className="font-semibold text-xl">Education Histories</h2>
+        <div className='flex justify-end pr-5'>
+          <AddEducation />
         </div>
         <EducationHistory />
+        <h2 className="font-semibold text-xl pt-10">Job Histories</h2>
+        <div className='flex justify-end pr-5'>
+          <AddJob />
+        </div>
         <JobHistory />
       </div>
-      <div className='w-1/2 p-5'>
-        <h2 className="text-xl font-bold text-gray-800 dark:text-white mt-4">Edit Data</h2>
-        <div>
-          <ButtonEducation/>
-          <ButtonJob />
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 
